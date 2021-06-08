@@ -168,12 +168,12 @@ TR.addInspectorAttributes = function( swatch ) {
         radio = TR.iframe.find( ".ui-content" ).each(function() {
             $( this ).find( ".ui-radio:first span:first" ).removeClass( "ui-corner-top" );
         }),
-		staticListItem = TR.iframe.find( ".ui-li-static.ui-btn-up-" + swatch );
+		staticListItem = TR.iframe.find( ".ui-li-static.ui-button-up-" + swatch );
 
-    slider.attr( "data-form", "ui-btn-up-" + swatch ).attr( "data-theme", swatch ).addClass( "ui-btn-up-" + swatch );
-    slider.find( "a" ).attr( "data-form", "ui-btn-up-" + swatch ).attr( "data-theme", swatch );
+    slider.attr( "data-form", "ui-button-up-" + swatch ).attr( "data-theme", swatch ).addClass( "ui-button-up-" + swatch );
+    slider.find( "a" ).attr( "data-form", "ui-button-up-" + swatch ).attr( "data-theme", swatch );
     select.attr( "id", "select-choice-" + swatch );
-	btn.attr( "data-theme", swatch ).attr( "data-form", "ui-btn-up-" + swatch );
+	btn.attr( "data-theme", swatch ).attr( "data-form", "ui-button-up-" + swatch );
     btn.find( ".ui-icon" ).attr( "data-form", "ui-icon" );
 	staticListItem.attr( "data-theme", swatch );
 }
@@ -1046,17 +1046,17 @@ TR.initDraggableColors = function() {
             { ".ui-bar-" : "-bar" },
             { ".ui-body-" : "-body" },
             { ".ui-page-theme-" : "-page" },
-            { ".ui-btn-up-": "-bup" },
-            { ".ui-btn-down-": "-bdown" },
+            { ".ui-button-up-": "-bup" },
+            { ".ui-button-down-": "-bdown" },
             { ".ui-link": "-link" },
-            { ".ui-btn-active": "-active" },
-            { ".ui-btn-": ( TR.versionCompare( "[1.4-)" ) ? "-bup" : "-btn" ) }
+            { ".ui-button-active": "-active" },
+            { ".ui-button-": ( TR.versionCompare( "[1.4-)" ) ? "-bup" : "-btn" ) }
         ];
 
         //different alpha array - no global
         var alphabet = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" ];
 
-        var droppables = [ ".ui-btn-", ".ui-btn-up-", ".ui-btn-down-", ".ui-bar-", ".ui-body-", ".ui-page-theme-" ];
+        var droppables = [ ".ui-button-", ".ui-button-up-", ".ui-button-down-", ".ui-bar-", ".ui-body-", ".ui-page-theme-" ];
 
         if(TR.movingColor) {
             TR.movingColor = 0;
@@ -1089,13 +1089,13 @@ TR.initDraggableColors = function() {
                 }
             }
             //another loop to check if over a link or the active state
-            TR.iframe.find( ".ui-link, .ui-btn-active" ).each(function() {
+            TR.iframe.find( ".ui-link, .ui-button-active" ).each(function() {
                 var $this = $( this );
                 var top = frame_offset.top + $this.offset().top - TR.iframe.scrollTop(), bottom = top + $this.outerHeight(),
                     left = frame_offset.left + $this.offset().left, right = left + $this.outerWidth();
                 if( e.pageX <= right && e.pageX >= left && e.pageY <= bottom && e.pageY >= top ) {
-                    if( $this.hasClass("ui-btn-active") ) {
-                        el_class = ".ui-btn-active";
+                    if( $this.hasClass("ui-button-active") ) {
+                        el_class = ".ui-button-active";
                     } else {
                         el_class = ".ui-link";
                     }
@@ -1114,7 +1114,7 @@ TR.initDraggableColors = function() {
                         $( TR.iframe[ 0 ].getElementById( element.attr( "for" ) ) ) :
                         element ) :
                     element ).attr( "data-theme" );
-                if( el_class == ".ui-btn-active" && TR.versionCompare( "(-1.4)" ) ) {
+                if( el_class == ".ui-button-active" && TR.versionCompare( "(-1.4)" ) ) {
                     swatch = "global";
                 }
                 if( el_class.indexOf(".ui-bar") != -1 ) {
@@ -1375,63 +1375,56 @@ TR.initThemeRoller = function() {
 
     //initialize templates for adding swatches later
     TR.panelTemplate = $( "#tab2" ).html();
-
-    if ( TR.versionCompare( "[1.4-)" ) ) {
-        TR.swatchTemplate =
-            "<div class=\"preview ui-shadow swatch\">" +
-                "<div class=\"ui-header ui-bar-a\" data-swatch=\"a\" data-theme=\"a\" data-form=\"ui-bar-a\" data-role=\"header\" role=\"banner\">" +
-                "<a class=\"ui-btn-left ui-btn ui-btn-icon-notext ui-icon-home ui-btn-corner-all ui-shadow\" title=\" Home \" data-form=\"ui-icon\"> Home </a>" +
-                "<h1 class=\"ui-title\" tabindex=\"0\" role=\"heading\" aria-level=\"1\">A</h1>" +
-                "<a class=\"ui-btn-right ui-btn ui-btn-icon-notext ui-icon-grid ui-btn-corner-all ui-shadow\" title=\" Navigation \" data-form=\"ui-icon\"> Navigation </a>" +
-            "</div>" +
-            "<div class=\"ui-content ui-page-theme-a\" data-form=\"ui-page-theme-a\" data-theme=\"a\" role=\"main\">" +
-                "<div data-theme=\"a\" data-form=\"ui-body-a\" class=\"ui-body ui-body-a ui-corner-all\">" +
-                    "<p>Body</p>" +
-                    "<p>Sample text and <a href=\"#\" data-theme=\"a\" data-form=\"ui-link-a\">links</a>.</p>" +
-                "</div>" +
-                "<ul data-role=\"listview\" data-inset=\"true\" data-theme=\"a\">" +
-                    "<li data-role=\"list-divider\" data-theme=\"a\" data-swatch=\"a\" data-form=\"ui-bar-a\">List Header</li>" +
-                    "<li data-form=\"ui-body-a\" data-swatch=\"a\" data-theme=\"a\">Read-only list item</li>" +
-                    "<li><a class=\"ui-btn-a ui-btn ui-btn-icon-right ui-icon-carat-r\" data-form=\"ui-btn-up-a\" data-swatch=\"a\" data-theme=\"a\" href=\"#\">Linked list item</a></li>" +
-                "</ul>" +
-                "<div data-role=\"fieldcontain\">" +
-                    "<fieldset data-role=\"controlgroup\">" +
-                        "<input type=\"radio\" data-theme=\"a\" name=\"radio-choice-a\" id=\"radio-choice-1-a\" value=\"choice-1\" checked=\"checked\" />" +
-                        "<label for=\"radio-choice-1-a\" data-form=\"ui-btn-up-a\">Radio</label>" +
-                        "<input type=\"checkbox\" data-theme=\"a\" name=\"checkbox-a\" id=\"checkbox-a\" checked=\"checked\" />" +
-                        "<label for=\"checkbox-a\" data-form=\"ui-btn-up-a\">Checkbox</label>" +
-                    "</fieldset>" +
-                "</div>" +
-                "<div data-role=\"fieldcontain\">" +
-                    "<fieldset data-role=\"controlgroup\" data-type=\"horizontal\">" +
-                        "<input type=\"radio\" data-theme=\"a\" name=\"radio-view-a\" id=\"radio-view-a-a\" value=\"list\" checked=\"checked\"/>" +
-                        "<label for=\"radio-view-a-a\" data-form=\"ui-btn-up-a\">On</label>" +
-                        "<input type=\"radio\" data-theme=\"a\" name=\"radio-view-a\" id=\"radio-view-b-a\" value=\"grid\" />" +
-                        "<label for=\"radio-view-b-a\" data-form=\"ui-btn-up-a\">Off</label>" +
-                    "</fieldset>" +
-                "</div>" +
-                "<div data-role=\"fieldcontain\">" +
-                    "<select name=\"select-choice\" data-theme=\"a\" id=\"select-choice-a\" data-native-menu=\"false\" data-theme=\"a\" data-form=\"ui-btn-up-a\">" +
-                        "<option value=\"standard\">Option 1</option>" +
-                        "<option value=\"rush\">Option 2</option>" +
-                        "<option value=\"express\">Option 3</option>" +
-                        "<option value=\"overnight\">Option 4</option>" +
-                    "</select>" +
-                "</div>" +
-                    "<input type=\"text\" value=\"Text Input\" data-theme=\"a\" class=\"input\" data-form=\"ui-body-a\" />" +
-                    "<div data-role=\"fieldcontain\">" +
-                        "<input type=\"range\" name=\"slider\" value=\"50\" min=\"0\" max=\"100\" data-form=\"ui-body-a\" data-theme=\"a\" data-highlight=\"true\" />" +
-                    "</div>" +
-                    "<button data-icon=\"star\" data-theme=\"a\" data-form=\"ui-btn-up-a\">Button</button>" +
-                "</div>" +
-            "</div>";
-    } else if ( TR.versionCompare( "[1.3-)" ) ) {
-      TR.swatchTemplate = "<div class=\"preview ui-shadow swatch\"> <div class=\"ui-header ui-bar-a\" data-swatch=\"a\" data-theme=\"a\" data-form=\"ui-bar-a\" data-role=\"header\" role=\"banner\">       <a class=\"ui-btn-left ui-btn ui-btn-icon-notext ui-btn-corner-all ui-shadow ui-btn-up-a\" data-iconpos=\"notext\" data-theme=\"a\" data-role=\"button\" data-icon=\"home\" title=\" Home \">           <span class=\"ui-btn-inner ui-btn-corner-all\">             <span class=\"ui-btn-text\"> Home </span>               <span data-form=\"ui-icon\" class=\"ui-icon ui-icon-home ui-icon-shadow\"></span>           </span>     </a>        <h1 class=\"ui-title\" tabindex=\"0\" role=\"heading\" aria-level=\"1\">A</h1>      <a class=\"ui-btn-right ui-btn ui-btn-icon-notext ui-btn-corner-all ui-shadow ui-btn-up-a\" data-iconpos=\"notext\" data-theme=\"a\" data-role=\"button\" data-icon=\"grid\" title=\" Navigation \">            <span class=\"ui-btn-inner ui-btn-corner-all\">             <span class=\"ui-btn-text\"> Navigation </span>             <span data-form=\"ui-icon\" class=\"ui-icon ui-icon-grid ui-icon-shadow\"></span>           </span>     </a>    </div>      <div class=\"ui-content ui-body-a\" data-theme=\"a\" data-form=\"ui-body-a\" data-role=\"content\" role=\"main\">           <p>         Sample text and <a class=\"ui-link\" data-form=\"ui-body-a\" href=\"#\" data-theme=\"a\">links</a>.     </p>                <ul data-role=\"listview\" data-inset=\"true\">           <li data-role=\"list-divider\" data-swatch=\"a\" data-theme=\"a\" data-form=\"ui-bar-a\">List Header</li>        <li data-form=\"ui-btn-up-a\" data-swatch=\"a\" data-theme=\"a\">Read-only list item</li>        <li data-form=\"ui-btn-up-a\"><a href=\"#\">Linked list item</a></li>     </ul>     <div data-role=\"fieldcontain\">           <fieldset data-role=\"controlgroup\">           <input type=\"radio\" name=\"radio-choice-a\" id=\"radio-choice-1-a\" value=\"choice-1\" checked=\"checked\" />             <label for=\"radio-choice-1-a\" data-form=\"ui-btn-up-a\">Radio</label>              <input type=\"checkbox\" name=\"checkbox-a\" id=\"checkbox-a\" checked=\"checked\" />             <label for=\"checkbox-a\" data-form=\"ui-btn-up-a\">Checkbox</label>                                </fieldset>     </div>      <div data-role=\"fieldcontain\">            <fieldset data-role=\"controlgroup\" data-type=\"horizontal\">              <input type=\"radio\" name=\"radio-view-a\" id=\"radio-view-a-a\" value=\"list\" checked=\"checked\"/>              <label for=\"radio-view-a-a\" data-form=\"ui-btn-up-a\">On</label>              <input type=\"radio\" name=\"radio-view-a\" id=\"radio-view-b-a\" value=\"grid\"  />                <label for=\"radio-view-b-a\" data-form=\"ui-btn-up-a\">Off</label>             </fieldset>         </div>              <div data-role=\"fieldcontain\">            <select name=\"select-choice\" id=\"select-choice-a\" data-native-menu=\"false\" data-theme=\"a\" data-form=\"ui-btn-up-a\">              <option value=\"standard\">Option 1</option>                <option value=\"rush\">Option 2</option>                <option value=\"express\">Option 3</option>             <option value=\"overnight\">Option 4</option>           </select>       </div>              <input type=\"text\" value=\"Text Input\" class=\"input\" data-form=\"ui-body-a\" />                <div data-role=\"fieldcontain\">            <input type=\"range\" name=\"slider\" value=\"50\" min=\"0\" max=\"100\" data-form=\"ui-body-a\" data-theme=\"a\" data-highlight=\"true\" />        </div>              <button data-icon=\"star\" data-theme=\"a\" data-form=\"ui-btn-up-a\">Button</button>   </div></div>";
-    } else if ( TR.versionCompare( "[1.2-)" ) ) {
-      TR.swatchTemplate = "<div class=\"preview ui-shadow swatch\"> <div class=\"ui-header ui-bar-a\" data-swatch=\"a\" data-theme=\"a\" data-form=\"ui-bar-a\" data-role=\"header\" role=\"banner\">       <a class=\"ui-btn-left ui-btn ui-btn-icon-notext ui-btn-corner-all ui-shadow ui-btn-up-a\" data-iconpos=\"notext\" data-theme=\"a\" data-role=\"button\" data-icon=\"home\" title=\" Home \">           <span class=\"ui-btn-inner ui-btn-corner-all\">             <span class=\"ui-btn-text\"> Home </span>               <span data-form=\"ui-icon\" class=\"ui-icon ui-icon-home ui-icon-shadow\"></span>           </span>     </a>        <h1 class=\"ui-title\" tabindex=\"0\" role=\"heading\" aria-level=\"1\">A</h1>      <a class=\"ui-btn-right ui-btn ui-btn-icon-notext ui-btn-corner-all ui-shadow ui-btn-up-a\" data-iconpos=\"notext\" data-theme=\"a\" data-role=\"button\" data-icon=\"grid\" title=\" Navigation \">            <span class=\"ui-btn-inner ui-btn-corner-all\">             <span class=\"ui-btn-text\"> Navigation </span>             <span data-form=\"ui-icon\" class=\"ui-icon ui-icon-grid ui-icon-shadow\"></span>           </span>     </a>    </div>      <div class=\"ui-content ui-body-a\" data-theme=\"a\" data-form=\"ui-body-a\" data-role=\"content\" role=\"main\">           <p>         Sample text and <a class=\"ui-link\" data-form=\"ui-body-a\" href=\"#\" data-theme=\"a\">links</a>.     </p>                <div data-role=\"fieldcontain\" class=\"ui-listview-inset\">            <fieldset data-role=\"controlgroup\">           <li data-swatch=\"a\" class=\"ui-li ui-li-divider ui-btn ui-bar-a ui-corner-top\" data-role=\"list-divider\" role=\"\" data-form=\"ui-bar-a\">List Header</li>        <li class=\"ui-li ui-li-static ui-btn-up-a\" data-form=\"ui-btn-up-a\" data-theme=\"a\">Read-only list item</li>                      <input type=\"radio\" name=\"radio-choice-a\" id=\"radio-choice-1-a\" value=\"choice-1\" checked=\"checked\" />             <label for=\"radio-choice-1-a\" data-form=\"ui-btn-up-a\" class=\"ui-corner-none\">Radio 1</label>              <input type=\"radio\" name=\"radio-choice-a\" id=\"radio-choice-2-a\" value=\"choice-2\" />             <label for=\"radio-choice-2-a\" data-form=\"ui-btn-up-a\">Radio 2</label>               <input type=\"checkbox\" name=\"checkbox-a\" id=\"checkbox-a\" class=\"custom\" checked=\"checked\" />              <label for=\"checkbox-a\" data-form=\"ui-btn-up-a\">Checkbox</label>                                </fieldset>     </div>      <div data-role=\"fieldcontain\">            <fieldset data-role=\"controlgroup\" data-type=\"horizontal\">              <input type=\"radio\" name=\"radio-view-a\" id=\"radio-view-a-a\" value=\"list\" checked=\"checked\"/>              <label for=\"radio-view-a-a\" data-form=\"ui-btn-up-a\">On</label>              <input type=\"radio\" name=\"radio-view-a\" id=\"radio-view-b-a\" value=\"grid\"  />                <label for=\"radio-view-b-a\" data-form=\"ui-btn-up-a\">Off</label>             </fieldset>         </div>              <div data-role=\"fieldcontain\">            <select name=\"select-choice-1\" id=\"select-choice-1\" data-native-menu=\"false\" data-theme=\"a\" data-form=\"ui-btn-up-a\">              <option value=\"standard\">Option 1</option>                <option value=\"rush\">Option 2</option>                <option value=\"express\">Option 3</option>             <option value=\"overnight\">Option 4</option>           </select>       </div>              <input type=\"text\" value=\"Text Input\" class=\"input\" data-form=\"ui-body-a\" />                <div data-role=\"fieldcontain\">            <input type=\"range\" name=\"slider\" value=\"50\" min=\"0\" max=\"100\" data-form=\"ui-body-a\" data-theme=\"a\" data-highlight=\"true\" />        </div>              <button data-icon=\"star\" data-theme=\"a\" data-form=\"ui-btn-up-a\">Button</button>   </div></div>";
-    } else {
-      TR.swatchTemplate = "<div class=\"preview ui-shadow swatch\"> <div class=\"ui-header ui-bar-a\" data-swatch=\"a\" data-theme=\"a\" data-form=\"ui-bar-a\" data-role=\"header\" role=\"banner\">       <a class=\"ui-btn-left ui-btn ui-btn-icon-notext ui-btn-corner-all ui-shadow ui-btn-up-a\" data-iconpos=\"notext\" data-theme=\"a\" data-role=\"button\" data-icon=\"home\" title=\" Home \">           <span class=\"ui-btn-inner ui-btn-corner-all\">             <span class=\"ui-btn-text\"> Home </span>               <span data-form=\"ui-icon\" class=\"ui-icon ui-icon-home ui-icon-shadow\"></span>           </span>     </a>        <h1 class=\"ui-title\" tabindex=\"0\" role=\"heading\" aria-level=\"1\">A</h1>      <a class=\"ui-btn-right ui-btn ui-btn-icon-notext ui-btn-corner-all ui-shadow ui-btn-up-a\" data-iconpos=\"notext\" data-theme=\"a\" data-role=\"button\" data-icon=\"grid\" title=\" Navigation \">            <span class=\"ui-btn-inner ui-btn-corner-all\">             <span class=\"ui-btn-text\"> Navigation </span>             <span data-form=\"ui-icon\" class=\"ui-icon ui-icon-grid ui-icon-shadow\"></span>           </span>     </a>    </div>      <div class=\"ui-content ui-body-a\" data-theme=\"a\" data-form=\"ui-body-a\" data-role=\"content\" role=\"main\">           <p>         Sample text and <a class=\"ui-link\" data-form=\"ui-body-a\" href=\"#\" data-theme=\"a\">links</a>.     </p>                <div data-role=\"fieldcontain\">            <fieldset data-role=\"controlgroup\">           <li data-swatch=\"a\" class=\"ui-li ui-li-divider ui-btn ui-bar-a ui-corner-top\" data-role=\"list-divider\" role=\"\" data-form=\"ui-bar-a\">List Header</li>                      <input type=\"radio\" name=\"radio-choice-a\" id=\"radio-choice-1-a\" value=\"choice-1\" checked=\"checked\" />             <label for=\"radio-choice-1-a\" data-form=\"ui-btn-up-a\" class=\"ui-corner-none\">Radio 1</label>              <input type=\"radio\" name=\"radio-choice-a\" id=\"radio-choice-2-a\" value=\"choice-2\" />             <label for=\"radio-choice-2-a\" data-form=\"ui-btn-up-a\">Radio 2</label>               <input type=\"checkbox\" name=\"checkbox-a\" id=\"checkbox-a\" class=\"custom\" checked=\"checked\" />              <label for=\"checkbox-a\" data-form=\"ui-btn-up-a\">Checkbox</label>                                </fieldset>     </div>      <div data-role=\"fieldcontain\">            <fieldset data-role=\"controlgroup\" data-type=\"horizontal\">              <input type=\"radio\" name=\"radio-view-a\" id=\"radio-view-a-a\" value=\"list\" checked=\"checked\"/>              <label for=\"radio-view-a-a\" data-form=\"ui-btn-up-a\">On</label>              <input type=\"radio\" name=\"radio-view-a\" id=\"radio-view-b-a\" value=\"grid\"  />                <label for=\"radio-view-b-a\" data-form=\"ui-btn-up-a\">Off</label>             </fieldset>         </div>              <div data-role=\"fieldcontain\">            <select name=\"select-choice-1\" id=\"select-choice-1\" data-native-menu=\"false\" data-theme=\"a\" data-form=\"ui-btn-up-a\">              <option value=\"standard\">Option 1</option>                <option value=\"rush\">Option 2</option>                <option value=\"express\">Option 3</option>             <option value=\"overnight\">Option 4</option>           </select>       </div>              <input type=\"text\" value=\"Text Input\" class=\"input\" data-form=\"ui-body-a\" />                <div data-role=\"fieldcontain\">            <input type=\"range\" name=\"slider\" value=\"50\" min=\"0\" max=\"100\" data-form=\"ui-body-a\" data-theme=\"a\" data-highlight=\"true\" />        </div>              <button data-icon=\"star\" data-theme=\"a\" data-form=\"ui-btn-up-a\">Button</button>   </div></div>";
-    }
+    
+    TR.swatchTemplate =
+       "<div class=\"preview ui-shadow swatch\">" +
+       "<div class=\"ui-header ui-bar-a\" data-swatch=\"a\" data-theme=\"a\" data-form=\"ui-bar-a\" data-role=\"toolbar\" data-type=\"header\" role=\"banner\">" +
+       "<a class=\"ui-toolbar-header-button-left ui-button ui-button-corner-all ui-shadow\" title=\" Home \" data-role=\"button\" data-show-label=\"false\" data-icon=\"ui-icon-home\"> Home </a>" +
+       "<h1 class=\"ui-title\" tabindex=\"0\" role=\"heading\" aria-level=\"1\">A</h1>" +
+       "<a class=\"ui-toolbar-header-button-right ui-button ui-button-corner-all ui-shadow\" title=\" Navigation \" data-role=\"button\" data-show-label=\"false\" data-icon=\"ui-icon-grid\"> Navigation </a>" +
+       "</div>" +
+       "<div class=\"ui-content ui-page-theme-a\" data-form=\"ui-page-theme-a\" data-theme=\"a\" role=\"main\">" +
+       "<div data-theme=\"a\" data-form=\"ui-body-a\" class=\"ui-body ui-body-a ui-corner-all\">" +
+       "<p>Body</p>" +
+       "<p>Sample text and <a href=\"#\" data-theme=\"a\" data-form=\"ui-link-a\">links</a>.</p>" +
+       "</div>" +
+       "<ul data-role=\"listview\" data-inset=\"true\" data-theme=\"a\">" +
+       "<li data-role=\"list-divider\" data-theme=\"a\" data-swatch=\"a\" data-form=\"ui-bar-a\">List Header</li>" +
+       "<li data-form=\"ui-body-a\" data-swatch=\"a\" data-theme=\"a\">Read-only list item</li>" +
+       "<li><a class=\"ui-button-a ui-button ui-button-icon-right ui-icon-carat-r\" data-form=\"ui-button-up-a\" data-swatch=\"a\" data-theme=\"a\" href=\"#\">Linked list item</a></li>" +
+       "</ul>" +
+       "<div data-role=\"fieldcontain\">" +
+       "<fieldset data-role=\"controlgroup\">" +
+       "<input type=\"radio\" data-theme=\"a\" name=\"radio-choice-a\" id=\"radio-choice-1-a\" value=\"choice-1\" checked=\"checked\" />" +
+       "<label for=\"radio-choice-1-a\" data-form=\"ui-button-up-a\">Radio</label>" +
+       "<input type=\"checkbox\" data-theme=\"a\" name=\"checkbox-a\" id=\"checkbox-a\" checked=\"checked\" />" +
+       "<label for=\"checkbox-a\" data-form=\"ui-button-up-a\">Checkbox</label>" +
+       "</fieldset>" +
+       "</div>" +
+       "<div data-role=\"fieldcontain\">" +
+       "<fieldset data-role=\"controlgroup\" data-type=\"horizontal\">" +
+       "<input type=\"radio\" data-theme=\"a\" name=\"radio-view-a\" id=\"radio-view-a-a\" value=\"list\" checked=\"checked\"/>" +
+       "<label for=\"radio-view-a-a\" data-form=\"ui-button-up-a\">On</label>" +
+       "<input type=\"radio\" data-theme=\"a\" name=\"radio-view-a\" id=\"radio-view-b-a\" value=\"grid\" />" +
+       "<label for=\"radio-view-b-a\" data-form=\"ui-button-up-a\">Off</label>" +
+       "</fieldset>" +
+       "</div>" +
+       "<div data-role=\"fieldcontain\">" +
+       "<select name=\"select-choice\" data-theme=\"a\" id=\"select-choice-a\" data-native-menu=\"false\" data-theme=\"a\" data-form=\"ui-button-up-a\">" +
+       "<option value=\"standard\">Option 1</option>" +
+       "<option value=\"rush\">Option 2</option>" +
+       "<option value=\"express\">Option 3</option>" +
+       "<option value=\"overnight\">Option 4</option>" +
+       "</select>" +
+       "</div>" +
+       "<input type=\"text\" value=\"Text Input\" data-theme=\"a\" class=\"input\" data-form=\"ui-body-a\" />" +
+       "<div data-role=\"fieldcontain\">" +
+       "<input type=\"range\" name=\"slider\" value=\"50\" min=\"0\" max=\"100\" data-form=\"ui-body-a\" data-theme=\"a\" data-highlight=\"true\" />" +
+       "</div>" +
+       "<button data-icon=\"star\" data-theme=\"a\" data-form=\"ui-button-up-a\">Button</button>" +
+       "</div>" +
+       "</div>";
+       
     TR.panelTemplate = $( "#tab2" ).html();
 
     //call initialization methods
@@ -1529,7 +1522,7 @@ TR.refreshIframe = function( swatch ) {
 
             if( $(this).hasClass("ui-radio-on") ) {
                 data_theme = "global";
-                form = "ui-btn-active";
+                form = "ui-button-active";
             }
             if( form == "ui-link" ) {
                 data_theme = "global";
@@ -1638,12 +1631,12 @@ TR.selectElement = function( element ) {
         data_theme = data_theme[data_theme.length - 1];
     }
 
-    if( element.hasClass("ui-btn-active") ) {
+    if( element.hasClass("ui-button-active") ) {
         if ( TR.versionCompare( "(-1.4)" ) ) {
             data_theme = "global";
-            form = "ui-btn-active";
+            form = "ui-button-active";
         } else {
-            form = "ui-btn-active-" + data_theme;
+            form = "ui-button-active-" + data_theme;
         }
     }
     if( form == "ui-link" ) {

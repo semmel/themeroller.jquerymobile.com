@@ -10,16 +10,14 @@
     	$style = urldecode($_POST['style']);
     }
     $JQUERY_VERSION = $ALL_JQUERY_VERSIONS[ $JQM_VERSION ] ? $ALL_JQUERY_VERSIONS[ $JQM_VERSION ] : "1.6.4";
-
-    $kuler_markup = rtrim( preg_replace( "/\n/", "\n\t\t\t\t\t", file_get_contents( "kuler/kuler.html" ) ) ) . "\n";
 ?>
 <!DOCTYPE html>
-<html>             
+<html>
 <head>
 	<meta charset="UTF-8" />
 
 	<title>ThemeRoller | jQuery Mobile</title>
-	
+
 	<link rel="canonical" href="index.php" />
 	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
 
@@ -27,7 +25,6 @@
 	<link rel="stylesheet" type="text/css" href="css/jquery.ui.css" />
 	<link rel="stylesheet" type="text/css" href="css/farbtastic.css" />
 	<link rel="stylesheet" type="text/css" href="css/tr.panel.css" />
-	<link rel="stylesheet" type="text/css" href="kuler/kuler.css" />
 
 	<script type="text/javascript" src="js/lib/jquery.js"></script>
 	<script type="text/javascript" src="js/lib/jquery.ui.js"></script>
@@ -39,7 +36,6 @@
 	<script type="text/javascript" src="js/panel.js"></script>
 	<script type="text/javascript" src="js/ui.js"></script>
 	<script type="text/javascript" src="js/version.js"></script>
-	<script type="text/javascript" src="kuler/kuler.js"></script>
 	<?php
 	    if( file_exists( "jqm/" . $JQM_VERSION . "/panel.js" ) ) {
 	         echo '<script type="text/javascript" src="jqm/' . $JQM_VERSION . '/panel.js"></script>';
@@ -47,21 +43,21 @@
 	?>
 </head>
 <body>
-	
+
 	<div id="load-mask">
 		<div id="load-screen">
 				<div id="load-spinner"></div>
-		</div>	
+		</div>
 	</div>
-	
-	
+
+
 	<div id="interface">
 		<div id="welcome" class="dialog" title=" ">
 			<h1><strong>Welcome</strong> to ThemeRoller for jQuery Mobile</h1>
 			<p>
-				Create up to 26 theme "swatches" lettered from A-Z, 
+				Create up to 26 theme "swatches" lettered from A-Z,
 				each with a unique color scheme, then mix and
-				match for unlimited possibilities. 
+				match for unlimited possibilities.
 			</p>
 			<p>
 				<strong>To upgrade a theme to <?php echo $JQM_VERSION; ?>:</strong> Click the Import button, paste in your uncompressed theme, then tweak and download the upgraded version.
@@ -101,7 +97,7 @@
 			<div class="buttonpane">
 
 				<p>
-					Copy and paste the contents of any uncompressed 
+					Copy and paste the contents of any uncompressed
 					jQuery Mobile theme file to load it in for editing.
 				</p>
 			</div>
@@ -110,7 +106,7 @@
 		<div id="download" class="dialog" title=" ">
 			<h1><strong>Download</strong> Theme<input value="" /><label for="theme-name">Theme Name</label></h1>
 			<p>
-				This will generate a Zip file that contains both a compressed (for production) and uncompressed (for editing) 
+				This will generate a Zip file that contains both a compressed (for production) and uncompressed (for editing)
 				version of the theme.
 			</p>
 			<p><strong>To use your theme</strong>, add it<?php if(isset($JQM_VERSION) && preg_match("/1.4/", $JQM_VERSION)) echo " together with the icon CSS file";?> to the head of your page before the jquery.mobile.structure file, like this:</p>
@@ -125,9 +121,9 @@
   &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
   <b class="highlight">&lt;link rel="stylesheet" href="css/themes/my-custom-theme.css" /&gt;</b>
   <?php if(isset($JQM_VERSION) && preg_match("/1.4/", $JQM_VERSION)) echo '<b class="highlight">&lt;link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" /&gt;</b><br>';?>
-  &lt;link rel="stylesheet" href="http://code.jquery.com/mobile/<span class="version-num"><?php echo $JQM_VERSION; ?></span>/jquery.mobile.structure-<span class="version-num"><?php echo $JQM_VERSION; ?></span>.min.css" /&gt; 
-  &lt;script src="http://code.jquery.com/jquery-<?php echo $JQUERY_VERSION; ?>.min.js"&gt;&lt;/script&gt; 
-  &lt;script src="http://code.jquery.com/mobile/<span class="version-num"><?php echo $JQM_VERSION; ?></span>/jquery.mobile-<span class="version-num"><?php echo $JQM_VERSION; ?></span>.min.js"&gt;&lt;/script&gt; 
+  &lt;link rel="stylesheet" href="http://code.jquery.com/mobile/<span class="version-num"><?php echo $JQM_VERSION; ?></span>/jquery.mobile.structure-<span class="version-num"><?php echo $JQM_VERSION; ?></span>.min.css" /&gt;
+  &lt;script src="http://code.jquery.com/jquery-<?php echo $JQUERY_VERSION; ?>.min.js"&gt;&lt;/script&gt;
+  &lt;script src="http://code.jquery.com/mobile/<span class="version-num"><?php echo $JQM_VERSION; ?></span>/jquery.mobile-<span class="version-num"><?php echo $JQM_VERSION; ?></span>.min.js"&gt;&lt;/script&gt;
 
 &lt;/head&gt;
 				</code>
@@ -139,12 +135,12 @@
 				</p>
 			</div>
 		</div>
-		
+
 		<div id="share" class="dialog" title=" ">
 			<h1><strong>Share</strong> Theme</h1>
 			<p>
-				Use this link to share a copy of your theme. People can download 
-				or edit a copy of the theme, but your version won’t be changed. 
+				Use this link to share a copy of your theme. People can download
+				or edit a copy of the theme, but your version won’t be changed.
 			</p>
 			<div class="input-wrapper">
 			    <input type="text" value="" />
@@ -156,7 +152,7 @@
 			<div class="buttonpane">
 				<div class="separator"></div>
 				<p>
-					Important note: We can only store this theme URL on the server for 30 days, then it will be deleted. 
+					Important note: We can only store this theme URL on the server for 30 days, then it will be deleted.
 					Download a theme to keep a copy safe that you can import later.
 				</p>
 			</div>
@@ -179,9 +175,9 @@
 			<p>A jQuery Mobile theme contains a both global settings for things like rounded corner radius and active (on) state, and up to to 26 "swatches" lettered from A-Z, each with a unique color scheme that can be mixed and matched for unlimited possibilities. Each swatch  sets the colors, textures and font settings for the primary elements: toolbar, content block and button. Buttons have 3 interaction states: normal, hover, pressed.</p>
 
 			<h3 id="getting-started">Getting Started <a href="#help-top" class="help-top">^ Top</a></h3>
-			<p>The ThemeRoller interface has 3 major zones: the left column contains the inspector panel, along the top is the QuickSwatch/Kuler bar, and below this is the preview window. </p>
+			<p>The ThemeRoller interface has 3 major zones: the left column contains the inspector panel, along the top is the QuickSwatch bar, and below this is the preview window. </p>
 			<p>Use the <strong>inspector pane</strong> to set global theme settings on the first tab and tweak the individual style options for each swatch. Above the tabs, there are links to download, share, or import a theme.</p>
-			<p>In the <strong>QuickSwatch bar</strong>, you can turn the inspector feature on to automatically expand the relevant inspector section when you click on an element in the preview pane. Drag and drop a color from the QuickSwatch panel onto an element in the preview pane and the tool with automatically calculate text color and shadow, borders, gradients and even button states. The sliders make it easy to adjust the lightness and saturation of the colors. Click the Adobe Kuler Swatches to load pre-made color palettes from Adobe's popular color palette sharing site.</p>
+			<p>In the <strong>QuickSwatch bar</strong>, you can turn the inspector feature on to automatically expand the relevant inspector section when you click on an element in the preview pane. Drag and drop a color from the QuickSwatch panel onto an element in the preview pane and the tool with automatically calculate text color and shadow, borders, gradients and even button states. The sliders make it easy to adjust the lightness and saturation of the colors.</p>
 				<p>The <strong>preview pane</strong> shows a sample of common jQuery Mobile widgets that live update each time you make a change to the theme so you can quickly test and tweak the theme.</p>
 
 				<h3 id="downloading">Downloading themes <a href="#help-top" class="help-top">^ Top</a></h3>
@@ -203,7 +199,7 @@
 				</p>
 			</div>
 		</div>
-		
+
 		<div id="toolbar">
 			<div id="tr-logo"></div>
 			<div id="button-block-1">
@@ -211,7 +207,7 @@
 					<img src="images/jqm_logo_small.png" alt="jQuery Mobile"/>
 					<img id="version-select-arrow" src="images/version_select_arrow.png" alt=" " />
 					<div id="current-version">Version <?php echo $JQM_VERSION ?></div>
-					
+
 					<?php
 						if (isset($VERSION_LIST)) {
 							echo '<ul><b>Switch to version:</b>';
@@ -224,7 +220,7 @@
 						}
 					?>
 				</div>
-				
+
 				<div id="fix-buttons">
 					<div id="undo">
 						<img src="images/undo.png" alt="Undo" />
@@ -279,9 +275,9 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div id="colorpicker"></div>
-		
+
 		<div id="tr_panel">
 			<div id="tabs">
 				<ul>
@@ -289,7 +285,7 @@
 				</ul>
 			</div>
 		</div>
-		
+
 		<div id="wrapper">
 			<div id="header-wrapper">
 				<div id="header">
@@ -333,11 +329,6 @@
 							<span>SATURATION</span><div id="saturation_slider"></div>
 						</div>
 					</div>
-					<?php 
-					    if( isset($kuler_markup) ) {
-					        echo $kuler_markup;
-					    }
-					?>
 					<div id="most-recent-colors">
 						<div class="picker">
 							<h2>Recent Colors</h2>
@@ -383,13 +374,13 @@
 				<iframe id="frame" src="jqm/<?php echo $JQM_VERSION ;?>/preview.html" onload="TR.iframeLoadCallback();">
 				</iframe>
 			</div>
-			
+
 			<?php
 				if( isset($JQM_VERSION) ) {
 					echo '<div id="version">' . $JQM_VERSION . '</div>';
 				}
 			?>
-			
+
 			<?php
     			if( isset($style) || isset($style_id) ) {
     			    echo '<div style="display: none" id="imported-style">true</div>';
@@ -421,8 +412,8 @@
 
 		</div>
 	</div>
-	
-	
-	
+
+
+
 </body>
 </html>

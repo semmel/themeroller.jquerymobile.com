@@ -4,13 +4,14 @@
     if ( isset( $argv ) ) {
         $jqm = isset( $argv[ 1 ] ) ? $argv[ 1 ] : '';
         $jq = isset( $argv[ 2 ] ) ? $argv[ 2 ] : '';
-        $jqm_zip ="http://jquerymobile.com/resources/download/jquery.mobile-" . $jqm . ".zip";
+        $jqm = '1.5.0';
+        $jqm_zip ="https://jquerymobile.com/resources/download/jquery.mobile-" . $jqm . ".zip";
         $jqm_dir = "jquery.mobile-" . $jqm;
-        $jq_path ="http://code.jquery.com/jquery-" . $jq . ".min.js";
+        $jq_path ="https://code.jquery.com/jquery-" . $jq . ".min.js";
 
         chdir( 'jqm' );
         rrmdir( $jqm );
-        
+
         //get most recent version of jqm
         $versions = preg_grep('/^([^.])/', scandir( "." ));
         $most_recent = '';
@@ -19,15 +20,15 @@
                 $most_recent = $version;
             }
         }
-        
+
         mkdir( $jqm );
         chdir( $jqm );
-    
+
         //Get the jqm zip file
         echo "Downloading the jQuery Mobile ZIP file...\n";
         getFile( $jqm_zip, $jqm_dir . ".zip" );
 
-        //Extract the files to a temporary directory 
+        //Extract the files to a temporary directory
         $zip = new ZipArchive;
         if ( $zip->open( $jqm_dir . ".zip" ) === true ) {
             $zip->extractTo( $jqm_dir );
@@ -37,7 +38,7 @@
         }
 
         //Delete the zip
-        unlink( $jqm_dir . ".zip" );
+        //unlink( $jqm_dir . ".zip" );
 
         //Get jQuery JS
         echo "Getting jQuery JS...\n";
@@ -100,7 +101,7 @@
         $contents = file_get_contents( 'version.php' );
         $contents = preg_replace( "/(\\\$ALL_JQUERY_VERSIONS.*)\n.?\);/s", "$1,\n\t\"" . $jqm . "\" => \"" . $jq . "\"\n);", $contents, 1 );
         writeFile( 'version.php', $contents );
-        
+
     } else {
         echo 'This script must be executed via command line';
     }
@@ -120,26 +121,26 @@
             curl_setopt($handle, CURLOPT_RETURNTRANSFER, 1);
             $contents = curl_exec( $handle );
             curl_close( $handle );
-        
+
             //write them out to local file
             writeFile( $filename, $contents );
             return true;
         }
     }
-    
+
     function writeFile( $filename, $string ) {
         $file = fopen( $filename, 'w' );
         fwrite( $file, $string );
         fclose( $file );
     }
-    
+
     function createStarter( $default, $starter ) {
         $contents = file_get_contents( $default );
-        
+
         //replace all 3 digit hex with matching 6 digit ones
         $contents = preg_replace( "/\#([A-Fa-f0-9])([A-Fa-f0-9])([A-Fa-f0-9])\s/s", "#$1$1$2$2$3$3 ", $contents );
         writeFile( $default, $contents );
-        
+
         $contents = preg_replace( "/\/\*\s*B\s*-*\*\/.*(\/\*\s*Structure\s*-*\*\/)/s", "$1", $contents );
 
         writeFile( $starter, $contents );
