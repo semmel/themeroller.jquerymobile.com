@@ -4,3 +4,4 @@ jqm/*/user_themes/*.css
 zips/*.zip
 .htaccess
 build/*
+.idea/

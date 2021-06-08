@@ -25,17 +25,16 @@
 	$css = substr($uncompressed, $comment_pos, strlen($uncompressed) - $comment_pos);
 
     $compressed = preg_replace_callback('/(\/\*.*?\*\/|\n|\t)/sim',
-        create_function(
-            '$matches',
-            'return "";'
-        ), $css);
+        function($matches) {
+	        return "";
+        }, $css);
 
     // remove all around in ",", ":" and "{"
     $compressed = preg_replace_callback('/\s?(,|{|:){1}\s?/sim',
-        create_function(
-            '$matches',
-            'return $matches[1];'
-        ), $compressed);
+        function($matches) {
+    	    return $matches[1];
+        },
+	    $compressed);
 
 	$compressed = $comment . $compressed;
 
@@ -104,7 +103,6 @@
 		}
 
 	}
-	$zip->addFromString("themes/" . $match, file_get_contents("http://code.jquery.com/mobile/" . $JQM_VERSION . "/" . $match));
 	$zip->addFromString("themes/" . $theme_name . ".css", $uncompressed);
 	$zip->addFromString("themes/" . $theme_name . ".min.css", $compressed);
 	//$zip->addFromString("js/jquery.mobile.min.js", htmlspecialchars(file_get_contents("http://code.jquery.com/mobile/latest/jquery.mobile.min.js")));
