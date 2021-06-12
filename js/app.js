@@ -769,16 +769,27 @@ TR.initControls = function() {
         $( "[data-name=global-icon-disc]" ).each(function() {
             elements.push( this.value );
         });
-
-        color_arr = elements[1].split( "" );
+        
+        // This code is so tightly coupled beyond comprehension, any refactoring would result in a total rewrite of the entire application.
+        color_arr = elements[1].split( "" ); // never seen such a way of accessing characters. What's wring with charCodeAt?
         var red = parseInt( (color_arr[1] + color_arr[2]), 16 );
         var green = parseInt( (color_arr[3] + color_arr[4]), 16 );
         var blue = parseInt( (color_arr[5] + color_arr[6]), 16 );
+        
+        const
+           altIconColorHexString = document.querySelector("input[data-name=global-icon-alt-disc][data-type=icon_disc].colorwell").value,
+           altRed = parseInt(altIconColorHexString.slice(1, 3), 16),
+           altGreen = parseInt(altIconColorHexString.slice(3, 5), 16),
+           altBlue = parseInt(altIconColorHexString.slice(5, 7), 16),
+           
+           altIconOpacityFormValue = document.querySelector("input[data-name=global-icon-alt-disc][data-type=icon_disc].number").value,
+           altOpacity =  parseFloat(altIconOpacityFormValue) / 100;
 
-        if( elements[0] == "with_disc" ) {
+        if( elements[0] === "with_disc" ) {
             TR.styleArray["global-icon-color"] = elements[1];
             TR.styleArray["global-icon-disc"] = "rgba(" + red + "," + green + "," + blue + "," + ( parseFloat(elements[2]) / 100 ) + ")";
             TR.styleArray["global-icon-shadow"] = "rgba(255,255,255,.4)";
+            TR.styleArray["global-icon-alt-disc"] = "rgba(" + altRed + "," + altGreen + "," + altBlue + "," + altOpacity + ")";
         } else {
             TR.styleArray["global-icon-color"] = "transparent";
             TR.styleArray["global-icon-disc"] = "transparent";
@@ -1120,7 +1131,7 @@ TR.initDraggableColors = function() {
                 if( el_class.indexOf(".ui-bar") != -1 ) {
                     swatch = element.attr( "data-swatch" );
                 }
-                var color = $( ".color-drag.ui-draggable-dragging" ).css( "background-color" ) || $( ".kuler-color.ui-draggable-dragging" ).css( "background-color" );
+                var color = $( ".color-drag.ui-draggable-dragging" ).css( "background-color" );
                 if( color != "transparent" ) {
                     color = TR.rgbtohex( color );
                 }
@@ -1421,7 +1432,7 @@ TR.initThemeRoller = function() {
        "<div data-role=\"fieldcontain\">" +
        "<input type=\"range\" name=\"slider\" value=\"50\" min=\"0\" max=\"100\" data-form=\"ui-body-a\" data-theme=\"a\" data-highlight=\"true\" />" +
        "</div>" +
-       "<button data-icon=\"star\" data-theme=\"a\" data-form=\"ui-button-up-a\">Button</button>" +
+       "<button data-theme=\"a\" data-form=\"ui-button-up-a\">Button</button>" +
        "</div>" +
        "</div>";
        
@@ -1735,8 +1746,9 @@ TR.updateFormValues = function( $this ) {
                 } else {
                     if( i != "global-icon-color" && i != "global-icon-shadow" ) {
                         var with_disc = $( "select[data-name=global-icon-disc]" ),
-                            disc_color = $this.find( "[data-name=global-icon-disc].colorwell" ),
-                            disc_opacity = $this.find( "[data-name=global-icon-disc]:not(.colorwell)" );
+                           reference = (i === "global-icon-alt-disc") ? i : "global-icon-disc",
+                            disc_color = $this.find( `[data-name=${reference}].colorwell` ),
+                            disc_opacity = $this.find( `[data-name=${reference}]:not(.colorwell)` );
 
                         if( value.indexOf( "transparent" ) != -1 ) {
                             with_disc.val( "without_disc" );

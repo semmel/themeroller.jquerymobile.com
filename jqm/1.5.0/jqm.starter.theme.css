@@ -121,10 +121,10 @@ label.ui-button {
 }
 /* Popup arrow */
 .ui-popup.ui-corner-all > .ui-popup-arrow-guide {
-	left: .6em /*{global-radii-blocks}*/;
-	right: .6em /*{global-radii-blocks}*/;
-	top: .6em /*{global-radii-blocks}*/;
-	bottom: .6em /*{global-radii-blocks}*/;
+	left: .3125em /*{global-radii-blocks}*/;
+	right: .3125em /*{global-radii-blocks}*/;
+	top: .3125em /*{global-radii-blocks}*/;
+	bottom: .3125em /*{global-radii-blocks}*/;
 }
 /* Shadow
 -----------------------------------------------------------------------------------------------------------*/
@@ -134,9 +134,9 @@ label.ui-button {
 	box-shadow: 0 1px 3px /*{global-box-shadow-size}*/ 				rgba(0,0,0,.15) /*{global-box-shadow-color}*/;
 }
 .ui-shadow-inset {
-	-webkit-box-shadow: inset 0 1px 3px /*{global-box-shadow-size}*/ 	rgba(0,0,0,.2) /*{global-box-shadow-color}*/;
-	-moz-box-shadow: inset 0 1px 3px /*{global-box-shadow-size}*/ 		rgba(0,0,0,.2) /*{global-box-shadow-color}*/;
-	box-shadow: inset 0 1px 3px /*{global-box-shadow-size}*/ 	rgba(0,0,0,.2) /*{global-box-shadow-color}*/;
+	-webkit-box-shadow: inset 0 1px 3px /*{global-box-shadow-size}*/ 	rgba(0,0,0,.15) /*{global-box-shadow-color}*/;
+	-moz-box-shadow: inset 0 1px 3px /*{global-box-shadow-size}*/ 		rgba(0,0,0,.15) /*{global-box-shadow-color}*/;
+	box-shadow: inset 0 1px 3px /*{global-box-shadow-size}*/ 	rgba(0,0,0,.15) /*{global-box-shadow-color}*/;
 }
 .ui-overlay-shadow {
 	-webkit-box-shadow: 0 0 12px 		rgba(0,0,0,.6);
@@ -146,7 +146,6 @@ label.ui-button {
 /* Icons
 -----------------------------------------------------------------------------------------------------------*/
 .ui-icon {
-	background-color: 					#666666 /*{global-icon-color}*/;
 	background-color: 					rgba(0,0,0,.3) /*{global-icon-disc}*/;
 	background-position: center center;
 	background-repeat: no-repeat;
@@ -160,8 +159,7 @@ html .ui-alt-icon.ui-checkbox-off .ui-icon,
 html .ui-alt-icon.ui-radio-off .ui-icon,
 html .ui-alt-icon .ui-checkbox-off .ui-icon,
 html .ui-alt-icon .ui-radio-off .ui-icon {
-	background-color: 					#666666 /*{global-icon-color}*/;
-	background-color: 					rgba(0,0,0,.15) /*{global-icon-disc}*/;
+	background-color: 					rgba(0,0,0,.15) /*{global-icon-alt-disc}*/;
 }
 /* No disc */
 .ui-nodisc-icon .ui-icon,
@@ -348,7 +346,7 @@ html body div.ui-slider-track.ui-body-a .ui-button-active,
 html .ui-body-a .ui-accordion-header-active,
 html .ui-body-a .ui-accordion-header.ui-state-active {
 	background-color: 		#3388cc /*{a-active-background-color}*/;
-	border-color:	 		#3388cc /*{a-active-border}*/;
+	border-color:	 		#1c4a70 /*{a-active-border}*/;
 	color: 					#ffffff /*{a-active-color}*/;
 	text-shadow: 0 /*{a-active-shadow-x}*/ 1px /*{a-active-shadow-y}*/ 0 /*{a-active-shadow-radius}*/ #005599 /*{a-active-shadow-color}*/;
 }

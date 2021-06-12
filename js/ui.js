@@ -1,7 +1,7 @@
 /*
-ThemeRoller's various jQuery UI elements and other plugins are initialized here. 
+ThemeRoller's various jQuery UI elements and other plugins are initialized here.
 */
-
+/* global TR */
 $(function(){
 	$( "#load-mask" ).height($(window).height()).width($(window).width() + 15);
 });
@@ -17,7 +17,7 @@ TR.initializeUI = function() {
 	}
 
 	var hexDigits = new Array("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f");
-		
+	
 	//size the load mask and show the rest of the content after 3000ms
 	setTimeout(function() {
 		$( "#interface" ).css({
@@ -33,7 +33,7 @@ TR.initializeUI = function() {
 		}
 		resize();
 	}, 2500);
-			
+	
 	var colors = [];
 
 	//setting up farbtastic
@@ -41,9 +41,9 @@ TR.initializeUI = function() {
 	var p = $( "#picker" ).css( "opacity", 0.25 );
 	var selected;
 	$( ".colorwell" )
-	  	.each(function() { 
-	  		f.linkTo( this ); 
-	  		$( this ).css( "opacity", 0.75 ); 
+	  	.each(function() {
+	  		f.linkTo( this );
+	  		$( this ).css( "opacity", 0.75 );
 	  	})
 	  	.focus(function() {
 			if( selected ) {
@@ -78,14 +78,14 @@ TR.initializeUI = function() {
 		var name = $( this ).attr( "data-name" );
 		if(name.indexOf( "shadow-color" ) == -1) {
 			$( "#colorpicker" ).css({
-				"position": "absolute", 
-				"left": 40, 
+				"position": "absolute",
+				"left": 40,
 				"top": pos.top + 21
 			});
 		} else {
 			$( "#colorpicker" ).css({
-				"position": "absolute", 
-				"left": 100, 
+				"position": "absolute",
+				"left": 100,
 				"top": pos.top + 21
 			});
 		}
@@ -105,14 +105,14 @@ TR.initializeUI = function() {
 		var name = $( this ).attr( "data-name" );
 		if(name.indexOf( "shadow-color" ) == -1) {
 			$( "#colorpicker" ).css({
-				"position": "absolute", 
-				"left": pos.left, 
+				"position": "absolute",
+				"left": pos.left,
 				"top": pos.top + 21
 			});
 		} else {
 			$( "#colorpicker" ).css({
-				"position": "absolute", 
-				"left": pos.left, 
+				"position": "absolute",
+				"left": pos.left,
 				"top": pos.top + 21
 			});
 		}
@@ -137,11 +137,11 @@ TR.initializeUI = function() {
 	});
 
 	// Accordion
-	$( ".accordion" ).accordion({ 
-		header: "h3", 
-		active: false, 
-		clearStyle: true, 
-		collapsible: true 
+	$( ".accordion" ).accordion({
+		header: "h3",
+		active: false,
+		clearStyle: true,
+		collapsible: true
 	});
 
 	// Tabs
@@ -152,9 +152,9 @@ TR.initializeUI = function() {
 	});
 
 	// Slider
-	$( ".slider" ).slider({ 
-		max : 80, 
-		value: 40 
+	$( ".slider" ).slider({
+		max : 80,
+		value: 40
 	});
 
 	//radius sliders has different range of values
@@ -179,7 +179,7 @@ TR.initializeUI = function() {
 	
 	$( "#saturation_slider" ).bind("slide", function() {
 		var sat_val = $( this ).slider( "value" );
-		var sat_percent = sat_val / 100;	
+		var sat_percent = sat_val / 100;
 		if( sat_percent >= 0 ) {
 			var sat_str = "+=";
 		} else {
@@ -188,7 +188,7 @@ TR.initializeUI = function() {
 		}
 		
 		var lit_val = $( "#lightness_slider" ).slider( "value" );
-		var lit_percent = lit_val / 100;	
+		var lit_percent = lit_val / 100;
 		if( lit_percent >= 0 ) {
 			var lit_str = "+=";
 		} else {
@@ -206,7 +206,7 @@ TR.initializeUI = function() {
 	
 	$( "#lightness_slider" ).bind("slide", function() {
 		var sat_val = $( "#saturation_slider" ).slider( "value" );
-		var sat_percent = sat_val / 100;	
+		var sat_percent = sat_val / 100;
 		if( sat_percent >= 0 ) {
 			var sat_str = "+=";
 		} else {
@@ -215,7 +215,7 @@ TR.initializeUI = function() {
 		}
 		
 		var lit_val = $( this ).slider( "value" );
-		var lit_percent = lit_val / 100;	
+		var lit_percent = lit_val / 100;
 		if( lit_percent >= 0 ) {
 			var lit_str = "+=";
 		} else {

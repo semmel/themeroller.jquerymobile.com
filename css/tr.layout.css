@@ -216,19 +216,6 @@ h2{
 	margin-left: 10px;
 }
 
-#quickswatch #kuler-activation{
-	color: #29ABE2;
-	font-weight: normal;
-	margin-left: 5px;
-	cursor: pointer;
-}
-
-#quickswatch h2 #kuler-activation img{
-	position: relative;
-	top: -1px;
-	margin-left: 4px;
-}
-
 #quickswatch .colors{
 	padding: 10px;
 	margin-top: -10px;
@@ -307,7 +294,7 @@ h2{
 #saturation_slider{
 	float: left;
 	width: 100px;
-	margin-top: 8px;	
+	margin-top: 8px;
 	border: none;
     border-radius: 3px 3px 3px 3px;
     height: 4px;
@@ -327,7 +314,7 @@ h2{
 #lightness_slider{
 	float: left;
 	width: 100px;
-	margin: 8px 10px 0 0;	
+	margin: 8px 10px 0 0;
 	border: none;
     border-radius: 3px 3px 3px 3px;
     height: 4px;
@@ -436,20 +423,20 @@ iframe body{
 		color: #B3B3B3;
 		font-weight:bold;
 	}
-	
+
 	#toolbar .tb-button-inner {
 		margin: auto;
 		overflow: hidden;
 	}
-	
+
 	#toolbar .tb-button strong {
 		color: #fff;
 	}
-	
+
 	#toolbar .tb-button:hover, #fix-buttons div:hover {
 		background-color: #4f4f4f;
 	}
-	
+
 	#toolbar .tb-button:active, #fix-buttons div:active {
 		background-color: #666666;
 	}
@@ -482,21 +469,11 @@ iframe body{
 		overflow: hidden;
 		box-shadow: 0 0 10px #000;
 	}
-		
+
 		#toolbar #version-select img {
 			padding-top:2px;
 		}
-		
-		#version-select:hover {
-			height: auto;
-		}
-	
-		#version-select #version-select-arrow {
-			position: absolute;
-			top: 15px;
-			right: 10px;
-		}
-	
+
 		#current-version {
 			font-size: 13px;
 			color: #3eb249;
@@ -504,48 +481,26 @@ iframe body{
 			border-bottom: 1px solid #f2f2f2;
 			margin-top:-3px;
 		}
-		
-		#version-select ul {
-			list-style-type: none;
-			font-size: 13px;
-			padding: 0;
-		}
-		
-		#version-select ul li {
-			margin: 5px 0 0 0;
-			color: #3eb249;
-			cursor: pointer;
-		}
-		
-		#version-select ul b {
-			color: #aaa;
-			font-size:11px;
-			margin:-8px 0 -4px 0;
-		}
-		
-		#version-select ul li:hover{
-			text-decoration: underline;
-		}
-	
+
 	#inspector-button {
 		width: 75px;
 	}
-	
+
 	#toolbar #inspector-button.active {
 		background-color: #75B043;
 	}
-	
+
 	#toolbar #inspector-button.active span {
 		color: #000;
 	}
-	
+
 	#fix-buttons {
 		width: 88px;
 		height: 38px;
 		float: left;
 		margin-right: 10px;
 	}
-	
+
 	#fix-buttons>div{
 		width: 43px;
 		height: 29px;
@@ -575,7 +530,7 @@ iframe body{
 		-o-border-radius: 2px 0 0 2px;
 		margin-right: 2px;
 	}
-	
+
 	#redo {
 		border-radius: 0 2px 2px 0;
 		-moz-border-radius: 0 2px 2px 0;
@@ -593,30 +548,30 @@ iframe body{
 		width: 125px;
 		text-align: left;
 	}
-	
+
 	#button-block-2 #help-button {
 		width: 85px;
 		text-align: left;
 	}
-	
+
 	#button-block-2 .tb-button img {
 		float: left;
 		margin: 4px 14px 0 8px;
 	}
-	
+
 	#button-block-2 .tb-button .text {
 		float: left;
 		margin-top: 1px;
 	}
-	
+
 	#button-block-2 .big {
 		font-size: 13px;
 		color: #fff;
 		display:block;
 		margin-bottom:-1px;
 	}
-	
-	
+
+
 #version {
 	display: none;
 }

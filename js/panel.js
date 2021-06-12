@@ -1,3 +1,4 @@
+/* global TR */
 (function( $, window, undefined ) {
 
 TR.initPanel = function() {
@@ -296,6 +297,19 @@ TR.panelDictBase = {
 				"unit": "%",
 				"group": "icon_disc",
 				"name": "global-icon-disc"
+			},
+			
+			"Disc Color (Alt Icon)": {
+				"type": "color",
+				"group": "icon_disc",
+				"name": "global-icon-alt-disc"
+			},
+			
+			"Disc Opacity (Alt Icon)": {
+				"type": "number",
+				"unit": "%",
+				"group": "icon_disc",
+				"name": "global-icon-alt-disc"
 			}
 		},
 

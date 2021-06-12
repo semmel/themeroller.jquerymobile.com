@@ -84,15 +84,6 @@
 
 		<div id="upload" class="dialog" title=" ">
 			<h1><strong>Import</strong> Theme<span href="#" id="import-default">Import Default Theme</span></h1>
-			<?php
-				if ( isset($VERSION_LIST) ) {
-					echo '<label>Upgrade to version:</label><select id="upgrade-to-version">';
-					foreach($VERSION_LIST as $l) {
-						echo '<option value="' . $l . '">' . $l . '</option>';
-					}
-					echo '</select>';
-				}
-			?>
 			<textarea id="load-css"></textarea>
 			<div class="buttonpane">
 
@@ -205,20 +196,7 @@
 			<div id="button-block-1">
 				<div class="tb-button" id="version-select">
 					<img src="images/jqm_logo_small.png" alt="jQuery Mobile"/>
-					<img id="version-select-arrow" src="images/version_select_arrow.png" alt=" " />
 					<div id="current-version">Version <?php echo $JQM_VERSION ?></div>
-
-					<?php
-						if (isset($VERSION_LIST)) {
-							echo '<ul><b>Switch to version:</b>';
-							foreach($VERSION_LIST as $l) {
-								if( $l != $JQM_VERSION ) {
-									echo '<li data-version="' . $l . '">' . $l . '</li>';
-								}
-							}
-							echo '</ul>';
-						}
-					?>
 				</div>
 
 				<div id="fix-buttons">
@@ -400,9 +378,11 @@
 					} else {
 						//If the file exists we add the CSS here, if not, we leave it blank for the JS to find on load
 						$file_path = "jqm/" . $JQM_VERSION . "/jqm.starter.theme.css";
+						// TODO: Load here the customers jqm.theme, or if that is not set jqm1.5/themes/default/jquery.mobile.theme.yalst.css
 						if( isset($style_id) ) {
 							$file_path = "jqm/" . $JQM_VERSION . "/user_themes/" . $style_id . ".css";
 						}
+
 						if( is_file($file_path) ) {
 							echo file_get_contents( $file_path );
 						}

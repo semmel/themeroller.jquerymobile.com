@@ -1,3 +1,4 @@
+/* global TR */
 (function( $, window, undefined ) {
 
 TR.initVersioning = function() {
@@ -9,11 +10,11 @@ TR.initVersioning = function() {
 		resizable: false,
 		draggable: false,
         buttons: {
-            "Cancel": function() { 
-                $( "#upload" ).dialog( "close" ); 
+            "Cancel": function() {
+                $( "#upload" ).dialog( "close" );
             },
             "Import": function() {
-				TR.travelTo( $( "#upgrade-to-version" ).val(), true );
+				TR.travelTo( TR.version, true );
 			}
         }
     });
@@ -22,6 +23,7 @@ TR.initVersioning = function() {
 		e.preventDefault();
 		
 		$.ajax({
+			// TODO: use yalst/jqm1.5/themes/default/jquery.mobile.theme.yalst.css
 			url: "jqm/" + TR.version + "/jqm.default.theme.css",
 			dataType: "text",
 			mimeType: "text/plain",
@@ -30,10 +32,6 @@ TR.initVersioning = function() {
 			}
 		});
 	});
-	
-	$( "#version-select ul li" ).click( function() {
-		TR.travelTo( $( this ).attr( "data-version" ), false );
-	})
 }
 
 TR.travelTo = function( version, importing ) {
@@ -64,7 +62,7 @@ TR.passTheme = function( version ) {
 TR.merge = function( css, version, importing ) {
 	TR.undoLog.push( TR.styleBlock.text() );
 
-	if( importing ) {	
+	if( importing ) {
 		//takes in the imported CSS and puts values into styleArray
 		TR.styleBlock.text($('#load-css').val());
 		TR.initStyleArray();
@@ -114,5 +112,5 @@ TR.getNumberOfSwatches = function() {
 	}
 	return count;
 }
-	
+
 }) ( jQuery, window );
